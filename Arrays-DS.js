@@ -29,7 +29,6 @@ function readLine() {
 // Complete the reverseArray function below.
 function reverseArray(a) {
 
-    var revindex = 0;
     var result = [];
     result = a.reverse();
     return result;
