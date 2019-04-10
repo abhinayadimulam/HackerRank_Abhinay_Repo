@@ -29,12 +29,10 @@ function readLine() {
 // Complete the reverseArray function below.
 function reverseArray(a) {
 
-    var len = a.length;
-    var index;
     var revindex = 0;
-    var reva = [];
-    reva = a.reverse();
-    return reva;
+    var result = [];
+    result = a.reverse();
+    return result;
 
 }
 
