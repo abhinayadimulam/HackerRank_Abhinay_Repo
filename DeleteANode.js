@@ -74,12 +74,18 @@ function printSinglyLinkedList(node, sep, ws) {
  *
  */
 function deleteNode(head, position) {
-    let tmp = head;
-    while (position - 1 > 0) {
-        tmp = tmp.next;
-        position--;
+    if (position == 0) {
+        return head.next;
     }
-    tmp.next = tmp.next.next;
+    var iHead = head;
+    for (var i = 0; i < position - 1; i++) {
+        iHead = iHead.next;
+    }
+    if (iHead.next) {
+        iHead.next = iHead.next.next;
+    } else {
+        iHead.next = null;
+    }
     return head;
 
 }
