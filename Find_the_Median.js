@@ -26,7 +26,6 @@ function readLine() {
 
 // Complete the findMedian function below.
 function findMedian(arr) {
-    //[ 0, 1, 2, 4, 6, 5, 3 ]
     arr.sort((a, b) => a - b)
 let length = arr.length
  return arr[Math.floor(length/2)]
