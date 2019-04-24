@@ -1,44 +1,47 @@
-function getMedian(input) {
-    var midPoint = Math.floor(input.length / 2);
-    return partitionMiddle(input, 0, input.length - 1)[midPoint];
-}
-function partitionMiddle(input, bottom, top) {
-    if (bottom >= top) return input;
-    var pivot = top;
-    var low = bottom;
-    for (var sentinel = low + 1; sentinel < top; sentinel++) {
-        if (input[sentinel] < input[pivot]) {
-            swap(input, sentinel, low);
-            low++;
-        }
-    }
+'use strict';
 
-    swap(input, ++low, pivot);
-
-    var midPoint = Math.floor(input.length / 2);
-    if (low === midPoint) return input;
-    if (low < midPoint) return partitionMiddle(input, low + 1, top);
-    return partitionMiddle(input, bottom, low - 1);
-
-}
-function swap(input, x, y) {
-    var temp = input[x];
-    input[x] = input[y];
-    input[y] = temp;
-}
-function processData(input) {
-    input =input.split('\n')[1].split(' ').map(function (val) { return parseInt(val, 10); });
-
-    process.stdout.write(getMedian(input) + '\n');
-}
+const fs = require('fs');
 
 process.stdin.resume();
-process.stdin.setEncoding("ascii");
-_input = "";
-process.stdin.on("data", function (input) {
-    _input += input;
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
 });
 
-process.stdin.on("end", function () {
-    processData(_input);
+process.stdin.on('end', _ => {
+    inputString = inputString.replace(/\s*$/, '')
+        .split('\n')
+        .map(str => str.replace(/\s*$/, ''));
+
+    main();
 });
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+// Complete the findMedian function below.
+function findMedian(arr) {
+    //[ 0, 1, 2, 4, 6, 5, 3 ]
+    arr.sort((a, b) => a - b)
+let length = arr.length
+ return arr[Math.floor(length/2)]
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const n = parseInt(readLine(), 10);
+
+    const arr = readLine().split(' ').map(arrTemp => parseInt(arrTemp, 10));
+
+    let result = findMedian(arr);
+
+    ws.write(result + "\n");
+
+    ws.end();
+}
